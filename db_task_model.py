@@ -3,16 +3,16 @@ from pydantic import BaseModel
 # Import several components from sqlmodel library for ORM functionality
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
-
-# Define a Task model class that inherits from SQLModel
-# The table=True parameter indicates this class will be mapped to a database table
 class Task(SQLModel, table=True):
-    # Integer primary key field that can be None (auto-incremented by database)
     id: int | None = Field(default=None, primary_key=True)
-    # String field for task description with empty string as default
     description: str = Field(default="")
-    # Boolean field to track completion status with False as default
     isComplete: bool = Field(default=False)
+    user_id: int = Field(default=None, foreign_key="user.id")
+
+class User(SQLModel, table=True):
+    password: str = Field(default=None)
+    email: str = Field(default="")
+    id: int | None = Field(default=None, primary_key=True)
 
 
 # Define database name
