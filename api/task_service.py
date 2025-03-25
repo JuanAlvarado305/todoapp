@@ -1,5 +1,5 @@
 from fastapi import APIRouter  # Imports APIRouter from FastAPI (not used in this file)
-from task_model import Task  # Imports the Task model
+from todoapp.api.task_model import Task  # Imports the Task model
 
 # Creates a list with two empty Task objects
 tasks = [
